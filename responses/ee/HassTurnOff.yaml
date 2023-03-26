@@ -1,0 +1,12 @@
+language: ee
+responses:
+  intents:
+    HassTurnOff:
+      default: "{{ state.domain }} välja lülitatud"
+      lights_area: "Tuled välja lülitatud"
+      fans_area: "Ventilaatorid välja lülitatud"
+      cover: "Suletud"
+      light_all: "Kõik tuled välja lülitatud"
+      fan_all: "Kõik ventilaatorid välja lülitatud"
+      cover_device_class: "{{ slots.device_class }} suletud"
+      lock: "Lukk avatud"

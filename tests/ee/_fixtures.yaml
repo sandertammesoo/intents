@@ -1,0 +1,20 @@
+language: ee
+areas:
+  - name: Köök
+    id: kitchen
+  - name: Elutuba
+    id: living_room
+  - name: Magamistuba
+    id: bedroom
+  - name: Garaaz
+    id: garage
+entities:
+  - name: Magamistoa lamp
+    id: light.bedroom_lamp
+    area: bedroom
+  - name: Köögi lüliti
+    id: switch.kitchen
+    area: kitchen
+  - name: Lae ventilaator
+    id: fan.ceiling
+    area: living_room

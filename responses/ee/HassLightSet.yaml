@@ -1,0 +1,6 @@
+language: ee
+responses:
+  intents:
+    HassLightSet:
+      brightness: "Heledus seadistatud"
+      color: "Värvus seadistatud"

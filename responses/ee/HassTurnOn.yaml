@@ -1,0 +1,12 @@
+language: ee
+responses:
+  intents:
+    HassTurnOn:
+      default: "{{ state.domain }} sisse lülitatud"
+      lights_area: "Tuled sisse lülitatud"
+      fans_area: "Ventilaatorid sisse lülitatud"
+      cover: "Ava"
+      cover_device_class: "{{ slots.device_class }} avatud"
+      scene: "Aktiveeritud"
+      script: "Skript käivitatud"
+      lock: "Lukk suletud"

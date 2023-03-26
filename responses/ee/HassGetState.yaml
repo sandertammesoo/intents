@@ -1,0 +1,36 @@
+language: ee
+responses:
+  intents:
+    HassGetState:
+      one: "{{ slots.name | capitalize }} on {{ state.state_with_unit }}
+
+        "
+      one_yesno:
+        "{% if query.matched %}\n  Jah\n{% else %}\n  Ei, {{ state.state_with_unit\
+        \ }}\n{% endif %}\n"
+      any:
+        "{% if query.matched %}\n  {% set match = query.matched | map(attribute=\"\
+        name\") | sort | list %}\n  {% if match | length > 4 %}\n    Jah, {{ match[:3]\
+        \ | join(\", \") }} ja {{ (match | length - 3) }} rohkem\n  {%- else -%}\n\
+        \    Jah,\n    {% for name in match -%}\n      {% if not loop.first and not\
+        \ loop.last %}, {% elif loop.last and not loop.first %} ja {% endif -%}\n\
+        \      {{ name }}\n    {%- endfor -%}\n  {% endif %}\n{% else %}\n  Ei\n{%\
+        \ endif %}\n"
+      all: "{% if not query.unmatched: %}\n  Jah\n{% else %}\n  {% set no_match\
+        \ = query.unmatched | map(attribute=\"name\") | sort | list %}\n  {% if no_match\
+        \ | length > 4 %}\n    Ei, {{ no_match[:3] | join(\", \") }} ja {{ (no_match\
+        \ | length - 3) }} mitte rohkem\n  {%- else -%}\n    Ei,\n    {% for name in no_match\
+        \ -%}\n      {% if not loop.first and not loop.last %}, {% elif loop.last\
+        \ and not loop.first %} ja {% endif -%}\n      {{ name }}\n    {%- endfor\
+        \ %} mitte\n  {% endif %}\n{% endif %}\n"
+      which:
+        "{% if not query.matched %}\n  Mitte ühtegi\n{% else: %}\n  {% set match\
+        \ = query.matched | map(attribute=\"name\") | sort | list %}\n  {% if match\
+        \ | length > 4 %}\n    {{ match[:3] | join(\", \") }} ja {{ (match | length\
+        \ - 3) }} rohkem\n  {% else %}\n    {%- for name in match -%}\n      {% if not\
+        \ loop.first and not loop.last %}, {% elif loop.last and not loop.first %}\
+        \ ja {% endif -%}\n      {{ name }}\n    {%- endfor -%}\n  {% endif %}\n\
+        {% endif %}\n"
+      how_many: "{{ query.matched | length }}
+
+        "

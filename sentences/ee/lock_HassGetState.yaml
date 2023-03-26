@@ -1,0 +1,8 @@
+language: ee
+intents:
+  HassGetState:
+    data:
+      - sentences: []
+        slots:
+          domain: lock
+          name: all
